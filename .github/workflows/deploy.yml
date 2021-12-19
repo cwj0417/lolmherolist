@@ -12,3 +12,5 @@ jobs:
         - run: yarn build
   deploy:
     runs-on: ubuntu-latest
+    steps:
+        - run: echo 'ok'
