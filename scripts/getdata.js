@@ -27,6 +27,7 @@ request(listUrl).then(res => {
             }
         }))).then(() => {
             fs.writeJson(path.join(__dirname, '../data/heroList.json'), heroList);
+            console.log('fetch latest data success');
         });
     }
 });
