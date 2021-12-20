@@ -3,6 +3,7 @@
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 import { ref } from "vue";
 import heroList from "../data/heroList.json";
+import heroDetail from "./detail.vue";
 const heros = Object.values(heroList);
 console.log(heros);
 const roles = [
@@ -75,9 +76,16 @@ const setField = (newField) => {
     order.value = "asc";
   }
 };
+
+// detail
+
+const showDetail = ref(false)
+const detail = ref({})
+
 </script>
 
 <template>
+  <heroDetail :showDetail="showDetail" :detail="detail" @close="showDetail = false" />
   <div class="sort-wrap">
     <span
       class="sort-item"
@@ -117,8 +125,9 @@ const setField = (newField) => {
           return order === 'asc' ? b - a : a - b;
         })"
       :key="hero.heroId"
+      @click="showDetail = true; detail = hero.detail"
     >
-      <img :src="hero.avatar" class="w-8 h-8" alt="" />
+      <img :src="hero.avatar" class="w-8 h-8 rounded-full" alt="" />
       <div class="flex mx-1" style="width: calc(100vw - 3rem)">
         <div
           class="bg-blue-300 content-text"
