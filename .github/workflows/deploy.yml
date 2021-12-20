@@ -11,7 +11,7 @@ jobs:
         - run: yarn
         - run: node scripts/getdata.js
         - run: yarn build
-        - run: tar --dereference --directory dist/ -cvf artifact.tar
+        - run: tar -h -C dist/ -cvf artifact.tar ./
         - uses: actions/upload-artifact@main
           with:
             name: github-pages
