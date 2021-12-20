@@ -118,7 +118,7 @@ const setField = (newField) => {
         })"
       :key="hero.heroId"
     >
-      <img :src="hero.avatar" alt="" />
+      <img :src="hero.avatar" class="w-8 h-8" alt="" />
       <div class="flex mx-1" style="width: calc(100vw - 3rem)">
         <div
           class="bg-blue-300 content-text"
