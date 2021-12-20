@@ -11,7 +11,15 @@ jobs:
         - run: yarn
         - run: node scripts/getdata.js
         - run: yarn build
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-        - run: echo 'ok'
+        - run: tar --dereference --directory dist/ -cvf artifact.tar
+        - uses: actions/upload-artifact@main
+          with:
+            name: github-pages
+            path: ./artifact.tar
+            if-no-files-found: warn
+        - uses: actions/deploy-pages@v1-beta
+          with:
+            token: ${{ secrets.GITHUB_TOKEN }}
+            timeout: 600000
+            error_count: 10
+            reporting_interval: 1000
