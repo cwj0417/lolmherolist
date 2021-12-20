@@ -11,15 +11,7 @@ jobs:
         - run: yarn
         - run: node scripts/getdata.js
         - run: yarn build
-        - run: tar -h -C dist/ -cvf artifact.tar ./
-        - uses: actions/upload-artifact@main
+        - uses: JamesIves/github-pages-deploy-action@4.1.7
           with:
-            name: github-pages
-            path: ./artifact.tar
-            if-no-files-found: warn
-        - uses: actions/deploy-pages@v1-beta
-          with:
-            token: ${{ secrets.GITHUB_TOKEN }}
-            timeout: 600000
-            error_count: 10
-            reporting_interval: 1000
+            branch: page
+            folder: dist
